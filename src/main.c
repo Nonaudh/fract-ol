@@ -1,39 +1,81 @@
 #include "src.h"
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
-void	ft_mlx_pixel_put(t_data *data, int x, int y, int color)
+typedef struct s_rect
 {
-	char	*dst;
+	int	x;
+	int	y;
+	int width;
+	int height;
+	int	color;
+}	t_rect;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+typedef struct s_data
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+}	t_data;
+
+int	render_rect(t_data *data, t_rect rect)
+{
+	int	i;
+	int	j;
+
+	if (!data->win_ptr)
+		return (1);
+	i =  rect.y;
+	while (i < rect.y + rect.height)
+	{
+		j = rect.x;
+		while (j < rect.x + rect.width)
+		{
+			mlx_pixel_put(data->mlx_ptr, data->win_ptr, j, i, rect.color);
+			j++;
+		}
+	i++;
+	}
+	return (0);
+}
+
+int	handle_keypress(int keysym, t_data *data)
+{
+	if (keysym == XK_Escape)
+	{
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		data->win_ptr = NULL;
+	}
+	return (0);
+}
+
+int	render(t_data *data)
+{
+	render_rect(data, (t_rect){WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100,
+		100, 100, RED_PIXEL});
+	return (0);
 }
 
 int	main (void)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
+	
+	t_data	data;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 960, 540, "Fractol");
+	data.mlx_ptr = mlx_init();
+	if (!data.mlx_ptr)
+		return(MLX_ERROR);
 
-	img.img = mlx_new_image(mlx, 960, 540);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
-	&img.line_length, &img.endian);
-	ft_mlx_pixel_put(&img, 100, 100, 0x00FF0000);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
-	mlx_destroy_image(mlx, img.img);
-	mlx_destroy_display(mlx);
-	free(mlx);
+	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "Fractol");
+	if (!data.win_ptr)
+	{
+		free(data.mlx_ptr);
+		return(MLX_ERROR);
+	}
+
+	mlx_loop_hook(data.mlx_ptr, &render, &data);
+	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
+
+	mlx_loop(data.mlx_ptr);
+
+	mlx_destroy_display(data.mlx_ptr);
+	free(data.mlx_ptr);
 
 	return (0);
 }
