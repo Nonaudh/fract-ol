@@ -2,7 +2,7 @@ CC = clang
 
 CFLAGS = #-Wall -Werror -Wextra
 
-SRC = src/main.c
+SRC = src/main.c src/mandelbrot.c src/handle_mouse.c src/handle_keypress.c
 
 SRC_BONUS = 
 
@@ -16,7 +16,7 @@ LIBFTDIR = lib/libft
 
 MLXDIR = lib/mlx_linux
 
-NAME = fracol
+NAME = fractol
 
 BONUS = 
 
@@ -24,16 +24,16 @@ BONUS =
 	@$(CC) $(CFLAGS) -I/usr/include -Ilib/mlx_linux -c $< -o ${<:.c=.o}
 
 $(NAME) : $(OBJ)
-	@#tput setaf 2
 	$(MAKE) -sC $(LIBFTDIR)
-	$(MAKE) -C $(MLXDIR)
+	$(MAKE) -sC $(MLXDIR)
 	$(CC) $(OBJ) $(INCLUDE) -o $(NAME)
+	@tput setaf 2
 	@echo $(NAME) compiled
 
 $(BONUS) : $(OBJ_BONUS)
-	@tput setaf 2
 	@$(MAKE) -sC $(LIBFTDIR) 
 	@$(CC) $(CFLAGS) $(OBJ_BONUS) $(INCLUDE) -o $(BONUS)
+	@tput setaf 2
 	@echo $(BONUS) compiled
 
 all : $(NAME)
@@ -41,17 +41,17 @@ all : $(NAME)
 bonus : $(BONUS)
 
 clean :
-	@tput setaf 3
 	@rm -f $(OBJ)
 	@$(MAKE) -sC $(LIBFTDIR) clean
 	@$(MAKE) -sC $(MLXDIR) clean
+	@tput setaf 3
 	@echo object files deleted
 
 fclean : clean
-	@tput setaf 3
 	@rm -f $(NAME)
 	@$(MAKE) -sC $(LIBFTDIR) fclean
 	@$(MAKE) -sC $(MLXDIR) clean
+	@tput setaf 3
 	@echo executable files deleted
 
 re: fclean all
