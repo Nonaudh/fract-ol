@@ -1,5 +1,14 @@
 #include "../inc/fract_ol.h"
 
+void	change_color(t_fractal *fractal, int keysym)
+{
+	if (keysym == NEXT_COLOR)
+		fractal->color += (255 * 255 * 255) / 100;
+	if (keysym == PREV_COLOR)
+		fractal->color -= (255 * 255 * 255) / 100;
+	
+}
+
 int	handle_keypress(int keysym, t_data *data)
 {
 	if (keysym == ESC)
@@ -19,8 +28,8 @@ int	handle_keypress(int keysym, t_data *data)
 		data->img.max_iterations += 42;
 	if (keysym == DECREASE)
 		data->img.max_iterations -= 42;
-	if (keysym == COLOR)
-		data->img.color += 600;
+	if (keysym == NEXT_COLOR || keysym == PREV_COLOR)
+		change_color(&data->img, keysym);	
 	if (keysym == RESET)
 		init_fractal(&data->img);
 	

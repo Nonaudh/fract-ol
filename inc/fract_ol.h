@@ -46,7 +46,8 @@ typedef struct s_data
 
 # define ESC 65307
 # define RESET 114
-# define COLOR 99
+# define NEXT_COLOR 99
+# define PREV_COLOR 120
 
 # define LEFT 65361
 # define UP 65362

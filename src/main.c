@@ -14,8 +14,8 @@ void	init_fractal(t_fractal *img)
 	img->y = 0;
 	img->color = 0x25FDE9;
 	img->zoom = 300;
-	img->offset_x = -1.21;
-	img->offset_y = -1.21;
+	img->offset_x = -2.05;
+	img->offset_y = -1.3;
 	img->max_iterations = 42;
 }
 
