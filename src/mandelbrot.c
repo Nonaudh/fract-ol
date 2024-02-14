@@ -2,28 +2,31 @@
 
 void	calculate_mandelbrot(t_data *data, t_fractal *fractal)
 {
-	int	i;
+	int		i;
 	double	x_tmp;
 
 	i = 0;
-	fractal->zx = 0.0;
-	fractal->zy = 0.0;
-	fractal->cx = (fractal->x / fractal->zoom) + fractal->offset_x;
-	fractal->cy = (fractal->y / fractal->zoom) + fractal->offset_y;
+	x_tmp = 0.0;
+	fractal->c_real = (fractal->x / fractal->zoom) + fractal->offset_x;
+	fractal->c_imaginary = (fractal->y/ fractal->zoom) + fractal->offset_y;
+	fractal->z_real = 0.0;
+	fractal->z_imaginary = 0.0;
+	
 
 	while (i < fractal->max_iterations)
 	{
-		x_tmp = fractal->zx * fractal->zx - fractal->zy * fractal->zy + fractal->cx;
-		fractal->zy = 2.0 * fractal->zx * fractal->zy + fractal->cy;
-		fractal->zx = x_tmp;
-		if (fractal->zx * fractal->zx + fractal->zy * fractal->zy >= MAX_VALUE)
+		x_tmp = fractal->z_real * fractal->z_real - fractal->z_imaginary * fractal->z_imaginary + fractal->c_real;
+		fractal->z_imaginary = 2*fractal->z_real* fractal->z_imaginary + fractal->c_imaginary;
+		fractal->z_real = x_tmp;
+
+		if (fractal->z_real * fractal->z_real + fractal->z_imaginary * fractal->z_imaginary >= 16)
 			break ;
 		i++;
 	}
 	if (i == fractal->max_iterations)
 		img_pix_put(fractal, fractal->x, fractal->y, 0x000000);
 	else
-		img_pix_put(fractal, fractal->x, fractal->y, fractal->color * i);
+		img_pix_put(fractal, fractal->x, fractal->y, (fractal->color * i));
 
 }
 

@@ -6,6 +6,7 @@ void	change_color(t_fractal *fractal, int keysym)
 		fractal->color += (255 * 255 * 255) / 100;
 	if (keysym == PREV_COLOR)
 		fractal->color -= (255 * 255 * 255) / 100;
+	ft_printf("c; %X\n", fractal->color);
 	
 }
 

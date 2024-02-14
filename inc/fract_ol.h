@@ -7,6 +7,8 @@
 # include <stdio.h>
 # include <math.h>
 
+# include <limits.h>
+
 typedef struct s_fractal
 {
 	void	*mlx_img;
@@ -16,10 +18,10 @@ typedef struct s_fractal
 	int	endian;
 	int	x;
 	int	y;
-	double	zx;
-	double	zy;
-	double	cx;
-	double	cy;
+	double	z_real;
+	double	z_imaginary;
+	double	c_real;
+	double	c_imaginary;
 	int	color;
 	double	offset_x;
 	double	offset_y;
@@ -36,7 +38,7 @@ typedef struct s_data
 
 # define SIZE 800
 
-# define MAX_VALUE 1.7976931348623157E+308
+# define MAX_VALUE 2147483647
 
 # define MLX_ERROR 1
 

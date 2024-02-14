@@ -12,7 +12,7 @@ void	init_fractal(t_fractal *img)
 {
 	img->x = 0;
 	img->y = 0;
-	img->color = 0x25FDE9;
+	img->color = 0xFFFAFAE4;
 	img->zoom = 300;
 	img->offset_x = -2.05;
 	img->offset_y = -1.3;
@@ -50,6 +50,7 @@ int	main (void)
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 	&data.img.line_len, &data.img.endian);
 	
+	//render(&data);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_key_hook(data.win_ptr, &handle_keypress, &data);
 	mlx_mouse_hook(data.win_ptr, &handle_mouse, &data);
