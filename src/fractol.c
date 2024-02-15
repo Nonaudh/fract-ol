@@ -40,10 +40,11 @@ int		main (int argc, char **argv)
 {
 	t_fractal fractal;
 
-	if(parsing(&fractal, argc, argv))
+	if (parsing(&fractal, argc, argv))
 		if(!info())
 			return (1);
-	if (!(fractal.mlx_ptr = mlx_init()))
+	fractal.mlx_ptr = mlx_init();
+	if (!fractal.mlx_ptr)
 		return (1);
 	fractal.win_ptr = mlx_new_window(fractal.mlx_ptr, SIZE, SIZE, "Fractol");
 	if (!fractal.win_ptr)

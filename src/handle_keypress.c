@@ -3,10 +3,10 @@
 void	change_iterations (t_fractal *f, int keysym)
 {
 	if (keysym == INCREASE && f->max_iterations < 4200)
-		f->max_iterations += 42;
+		f->max_iterations += 21;
 	
 	if (keysym == DECREASE && f->max_iterations > 42)
-		f->max_iterations -= 42;
+		f->max_iterations -= 21;
 }
 
 void	reset_fractal(t_fractal *f)

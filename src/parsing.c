@@ -26,10 +26,9 @@ void	init_data_julia(t_fractal *f, double real, double imag)
 
 int		info(void)
 {
-	ft_putendl_fd("Error arguments", 1);
-	ft_putendl_fd("Fractal Available", 1);
-	ft_putstr_fd("Mandelebrot\t\t", 1);
-	ft_putendl_fd("Julia <real> <imaginary>", 1);
+	ft_putendl_fd("Error, arguments available", 1);
+	ft_putstr_fd("./fractol (Mandelebrot  ||  ", 1);
+	ft_putendl_fd("Julia <real> <imaginary>)", 1);
 	return (0);
 }
 
@@ -37,13 +36,13 @@ int		parsing(t_fractal *f, int argc, char**argv)
 {
 	if (argc > 1)
 	{
-		if (strncmp("Mandelbrot", argv[1], (size_t)ft_strlen(argv[1])) == 0 && argc == 2)
+		if (strncmp("Mandelbrot", argv[1], ft_strlen(argv[1])) == 0 && argc == 2)
 		{
 			f->fractal = 1;
 			init_data_mandelbrot(f);
 			return (0);
 		}
-		if (strncmp("Julia", argv[1], (size_t)ft_strlen(argv[1])) == 0 && (argc > 1))
+		if (strncmp("Julia", argv[1], ft_strlen(argv[1])) == 0 && (argc > 1))
 		{
 			f->fractal = 2;
 			if (argc == 2)

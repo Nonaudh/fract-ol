@@ -1,6 +1,6 @@
 CC = clang
 
-CFLAGS = # -Wall -Werror -Wextra -g #-Ofast 
+CFLAGS = -Wall -Werror -Wextra #-g #-Ofast 
 
 SRC = src/fractol.c src/parsing.c src/handle_keypress.c \
 src/mandelbrot.c src/utils.c src/handle_mouse.c \
