@@ -3,53 +3,45 @@
 # include "../lib/mlx_linux/mlx_int.h"
 # include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h>
-# include <stdio.h>
+
+
 # include <math.h>
 
-# include <limits.h>
 
 typedef struct s_fractal
 {
-	void	*mlx_img;
-	char	*addr;
-	int	bpp;
-	int	line_len;
-	int	endian;
-	int	x;
-	int	y;
-	double	z_real;
-	double	z_imaginary;
-	double	c_real;
-	double	c_imaginary;
-	int	color;
-	double	offset_x;
-	double	offset_y;
-	double	zoom;
-	int	max_iterations;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*mlx_img;
+	char		*img_addr;
+	int			fractal;
+	int			bpp;
+	int			line_len;
+	int			endian;
+	int			x;
+	int			y;
+	double		z_real;
+	double		z_imag;
+	double		c_real;
+	double		c_imag;
+	double		offset_x;
+	double		offset_y;
+	double		zoom;
+	int			color;
+	int			max_iterations;
 }	t_fractal;
 
-typedef struct s_data
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_fractal	img;
-}	t_data;
 
 # define SIZE 800
-
-# define MAX_VALUE 2147483647
-
-# define MLX_ERROR 1
-
-# define RED 0xFF0000
-# define GREEN 0x00FF00
-# define WHITE 0xFFFFFF
 
 # define ESC 65307
 # define RESET 114
 # define NEXT_COLOR 99
 # define PREV_COLOR 120
+
+# define C_1 65436
+# define C_2 65433
+# define C_3 65435
 
 # define LEFT 65361
 # define UP 65362
@@ -62,15 +54,27 @@ typedef struct s_data
 # define INCREASE 65451
 # define DECREASE 65453
 
-void	init_fractal(t_fractal *img);
-int	    render(t_data *data);
-void	img_pix_put(t_fractal *img, int x, int y, int color);
+void	loop_window(t_fractal *f);
+int		draw_image(t_fractal * f);
+void	calculate_pixel_color(t_fractal *f);
 
-void	draw_mandelbrot(t_data *data, t_fractal *fractal);
-void	calculate_mandelbrot(t_data *data, t_fractal *fractal);
+int		parsing(t_fractal *f, int argc, char**argv);
+int		info(void);
+void	init_data_mandelbrot(t_fractal *f);
+void	init_data_julia(t_fractal *f, double real, double imag);
 
-int	    handle_mouse(int mouse_code, int x, int y, t_data *data);
-void	zoom_in(t_fractal *fractal, int x, int y);
-void	zoom_out(t_fractal *fractal, int x, int y);
+void	img_pixel_put(t_fractal *f, int x, int y, int color);
+void	clean_exit(t_fractal *f);
 
-int	    handle_keypress(int keysym, t_data *data);
+void	calculate_mandelbrot(t_fractal *f);
+void	calculate_julia(t_fractal *f);
+
+int		handle_keypress(int keysym, t_fractal *f);
+void	change_color(t_fractal *f, int keysym);
+void	reset_fractal(t_fractal *f);
+void	change_iterations (t_fractal *f, int keysym);
+
+int		handle_mouse(int mouse_code, int x, int y, t_fractal *f);
+void	zoom_in(t_fractal *f, int x, int y);
+void	zoom_out(t_fractal *f, int x, int y);
+void	modify_c_constant(t_fractal *f, int x, int y);

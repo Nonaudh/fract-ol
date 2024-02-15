@@ -1,16 +1,14 @@
 #include "../inc/fract_ol.h"
 
-void	calculate_mandelbrot(t_fractal *f)
+void	calculate_julia(t_fractal *f)
 {
 	int		i;
 	double	x_tmp;
 
 	i = 0;
 	x_tmp = 0;
-	f->z_real = 0.0;
-	f->z_imag = 0.0;
-	f->c_real = (f->x / f->zoom) + f->offset_x;
-	f->c_imag = (f->y / f->zoom) + f->offset_y;
+	f->z_real = (f->x / f->zoom) + f->offset_x;
+	f->z_imag = (f->y / f->zoom) + f->offset_y;
 	while (i < f->max_iterations)
 	{
 		x_tmp = f->z_real * f->z_real - f->z_imag * f->z_imag + f->c_real;
