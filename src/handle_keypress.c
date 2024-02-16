@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_keypress.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahuge <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/16 14:23:13 by ahuge             #+#    #+#             */
+/*   Updated: 2024/02/16 14:23:16 by ahuge            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/fract_ol.h"
 
-void	change_iterations (t_fractal *f, int keysym)
+void	change_iterations(t_fractal *f, int keysym)
 {
 	if (keysym == INCREASE && f->max_iterations < 4200)
 		f->max_iterations += 21;
-	
 	if (keysym == DECREASE && f->max_iterations > 22)
 		f->max_iterations -= 21;
 }
@@ -50,7 +61,7 @@ int	handle_keypress(int keysym, t_fractal *f)
 	if (keysym == INCREASE || keysym == DECREASE)
 		change_iterations(f, keysym);
 	if (keysym == NEXT_COLOR || keysym == PREV_COLOR)
-		change_color(f, keysym);	
+		change_color(f, keysym);
 	if (keysym == C_1 || keysym == C_2 || keysym == C_3)
 		change_color(f, keysym);
 	if (keysym == RESET)

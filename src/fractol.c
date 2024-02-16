@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahuge <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/16 14:22:44 by ahuge             #+#    #+#             */
+/*   Updated: 2024/02/16 14:22:48 by ahuge            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/fract_ol.h"
 
 void	calculate_pixel_color(t_fractal *f)
@@ -31,6 +43,7 @@ int	draw_image(t_fractal * f)
 void	loop_window(t_fractal *f)
 {
 	mlx_loop_hook(f->mlx_ptr, &draw_image, f);
+	mlx_hook(f->win_ptr, 17, 0, &destroy_display, f);
 	mlx_key_hook(f->win_ptr, &handle_keypress, f);
 	mlx_mouse_hook(f->win_ptr, &handle_mouse, f);
 	mlx_loop(f->mlx_ptr);
