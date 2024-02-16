@@ -14,25 +14,25 @@
 
 void	zoom_in(t_fractal *f, int x, int y)
 {
-	double zoom_level;
+	double	zoom_level;
 
 	zoom_level = 1.42;
 	f->offset_x = (x / f->zoom + f->offset_x) - (x
-		/ (f->zoom * zoom_level));
+			/ (f->zoom * zoom_level));
 	f->offset_y = (y / f->zoom + f->offset_y) - (y
-		/ (f->zoom * zoom_level));
+			/ (f->zoom * zoom_level));
 	f->zoom *= zoom_level;
 }
 
 void	zoom_out(t_fractal *f, int x, int y)
 {
-	double zoom_level;
+	double	zoom_level;
 
 	zoom_level = 1.42;
 	f->offset_x = (x / f->zoom + f->offset_x) - (x
-		/ (f->zoom / zoom_level));
+			/ (f->zoom / zoom_level));
 	f->offset_y = (y / f->zoom + f->offset_y) - (y
-		/ (f->zoom / zoom_level));
+			/ (f->zoom / zoom_level));
 	f->zoom /= zoom_level;
 }
 

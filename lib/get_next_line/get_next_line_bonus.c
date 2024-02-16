@@ -18,7 +18,8 @@ char	*trim_the_line(char *full_line, size_t	surplus)
 	char	*final_line;
 
 	i = 0;
-	final_line = malloc(sizeof(char) * (ft_strlen_gnl(full_line) - surplus + 1));
+	final_line = malloc(sizeof(char) * (ft_strlen_gnl(full_line)
+				- surplus + 1));
 	if (!final_line)
 		return (NULL);
 	while (full_line[i] && full_line[i] != '\n')
@@ -125,7 +126,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	surplus[fd] = save_surplus(full_line);
 	if (!surplus[fd])
-		return(NULL);
+		return (NULL);
 	if (surplus[fd][0] == 0)
 	{
 		free(surplus[fd]);

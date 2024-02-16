@@ -20,9 +20,9 @@ void	calculate_pixel_color(t_fractal *f)
 		calculate_julia(f);
 }
 
-int	draw_image(t_fractal * f)
+int	draw_image(t_fractal *f)
 {
-	if(!f->win_ptr)
+	if (!f->win_ptr)
 		return (1);
 	f->x = 0;
 	f->y = 0;
@@ -49,12 +49,12 @@ void	loop_window(t_fractal *f)
 	mlx_loop(f->mlx_ptr);
 }
 
-int		main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_fractal fractal;
+	t_fractal	fractal;
 
 	if (parsing(&fractal, argc, argv))
-		if(!info())
+		if (!info())
 			return (1);
 	fractal.mlx_ptr = mlx_init();
 	if (!fractal.mlx_ptr)
@@ -67,7 +67,7 @@ int		main (int argc, char **argv)
 	}
 	fractal.mlx_img = mlx_new_image(fractal.mlx_ptr, SIZE, SIZE);
 	fractal.img_addr = mlx_get_data_addr(fractal.mlx_img, &fractal.bpp,
-	&fractal.line_len, &fractal.endian);
+			&fractal.line_len, &fractal.endian);
 	loop_window(&fractal);
 	clean_exit(&fractal);
 }

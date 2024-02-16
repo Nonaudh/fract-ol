@@ -57,7 +57,8 @@ char	*ft_strjoin_gnl(char *line, char *buffer)
 	z = 0;
 	if (!line || !buffer)
 		return (NULL);
-	tab = malloc(sizeof(char) * (ft_strlen_gnl(line) + ft_strlen_gnl(buffer) + 1));
+	tab = malloc(sizeof(char) * (ft_strlen_gnl(line)
+				+ ft_strlen_gnl(buffer) + 1));
 	if (tab == NULL)
 		return (NULL);
 	while (line[i])

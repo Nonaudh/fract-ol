@@ -36,7 +36,7 @@ void	init_data_julia(t_fractal *f, double real, double imag)
 	f->max_iterations = 42;
 }
 
-int		info(void)
+int	info(void)
 {
 	ft_putendl_fd("Error, arguments available", 1);
 	ft_putstr_fd("./fractol (Mandelebrot  ||  ", 1);
@@ -44,11 +44,12 @@ int		info(void)
 	return (0);
 }
 
-int		parsing(t_fractal *f, int argc, char**argv)
+int	parsing(t_fractal *f, int argc, char**argv)
 {
 	if (argc > 1)
 	{
-		if (strncmp("Mandelbrot", argv[1], ft_strlen(argv[1])) == 0 && argc == 2)
+		if (strncmp("Mandelbrot", argv[1], ft_strlen(argv[1])) == 0
+			&& argc == 2)
 		{
 			f->fractal = 1;
 			init_data_mandelbrot(f);

@@ -14,7 +14,7 @@
 
 void	img_pixel_put(t_fractal *f, int x, int y, int color)
 {
-	char*	pixel;
+	char	*pixel;
 
 	pixel = f->img_addr + (y * f->line_len + x * (f->bpp / 8));
 	*(int *)pixel = color;
@@ -27,7 +27,7 @@ void	clean_exit(t_fractal *f)
 	free(f->mlx_ptr);
 }
 
-int		destroy_display(t_fractal *f)
+int	destroy_display(t_fractal *f)
 {
 	mlx_destroy_window(f->mlx_ptr, f->win_ptr);
 	f->win_ptr = NULL;
