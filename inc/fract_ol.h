@@ -16,8 +16,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-#include <math.h>
-
 typedef struct s_fractal
 {
 	void		*mlx_ptr;
@@ -71,13 +69,16 @@ int		parsing(t_fractal *f, int argc, char**argv);
 int		info(void);
 void	init_data_mandelbrot(t_fractal *f);
 void	init_data_julia(t_fractal *f, double real, double imag);
+void	init_data_burning_ship(t_fractal *f);
 
 void	img_pixel_put(t_fractal *f, int x, int y, int color);
-void	clean_exit(t_fractal *f);
-int		destroy_display(t_fractal *f);
+int		clean_exit(t_fractal *f);
+int		skip_space_and_sign(char *str);
+double	ft_abs(double value);
 
 void	calculate_mandelbrot(t_fractal *f);
 void	calculate_julia(t_fractal *f);
+void    calculate_burning_ship(t_fractal *f);
 
 int		handle_keypress(int keysym, t_fractal *f);
 void	change_color(t_fractal *f, int keysym);

@@ -4,7 +4,7 @@ CFLAGS = -Wall -Werror -Wextra #-g #-Ofast
 
 SRC = src/fractol.c src/parsing.c src/handle_keypress.c \
 src/mandelbrot.c src/utils.c src/handle_mouse.c \
-src/julia.c
+src/julia.c src/burning_ship.c
 
 
 OBJ = $(SRC:%.c=%.o)
@@ -18,12 +18,12 @@ MLXDIR = lib/mlx_linux
 NAME = fractol
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -I/usr/include -Ilib/mlx_linux -c $< -o ${<:.c=.o}
+	$(CC) $(CFLAGS) -I/usr/include -Ilib/mlx_linux -c $< -o ${<:.c=.o}
 
 $(NAME) : $(OBJ)
 	$(MAKE) -sC $(LIBFTDIR)
 	$(MAKE) -sC $(MLXDIR)
-	@$(CC) $(OBJ) $(INCLUDE) -o $(NAME)
+	$(CC) $(OBJ) $(INCLUDE) -o $(NAME)
 	@tput setaf 2
 	@echo $(NAME) compiled
 

@@ -18,6 +18,8 @@ void	calculate_pixel_color(t_fractal *f)
 		calculate_mandelbrot(f);
 	else if (f->fractal == 2)
 		calculate_julia(f);
+	else if (f->fractal == 3)
+		calculate_burning_ship(f);
 }
 
 int	draw_image(t_fractal *f)
@@ -43,7 +45,7 @@ int	draw_image(t_fractal *f)
 void	loop_window(t_fractal *f)
 {
 	mlx_loop_hook(f->mlx_ptr, &draw_image, f);
-	mlx_hook(f->win_ptr, 17, 0, &destroy_display, f);
+	mlx_hook(f->win_ptr, 17, 0, &clean_exit, f);
 	mlx_key_hook(f->win_ptr, &handle_keypress, f);
 	mlx_mouse_hook(f->win_ptr, &handle_mouse, f);
 	mlx_loop(f->mlx_ptr);

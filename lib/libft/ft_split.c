@@ -28,7 +28,7 @@ static int	count_word(char const *s, char c)
 	return (x);
 }
 
-static	void	free_the_tab(char **tab, int j)
+static int	free_the_tab(char **tab, int j)
 {
 	int	i;
 
@@ -39,12 +39,7 @@ static	void	free_the_tab(char **tab, int j)
 		i++;
 	}
 	free(tab);
-}
-
-static void	set_variables(int *i, int *j)
-{
-	*i = 0;
-	*j = 0;
+	return (0);
 }
 
 static void	ft_tabset(char **tab, const char *s, int c)
@@ -53,7 +48,8 @@ static void	ft_tabset(char **tab, const char *s, int c)
 	int	x;
 	int	j;
 
-	set_variables(&i, &j);
+	i = 0;
+	j = 0;
 	while (s[i])
 	{
 		x = 0;
@@ -63,10 +59,8 @@ static void	ft_tabset(char **tab, const char *s, int c)
 		{
 			tab[j] = ft_substr(s, i, x);
 			if (tab[j] == 0)
-			{
-				free_the_tab(tab, j);
-				return ;
-			}
+				if (!free_the_tab(tab, j))
+					return ;
 			j++;
 			i = i + x;
 		}

@@ -28,7 +28,7 @@ void	calculate_mandelbrot(t_fractal *f)
 		x_tmp = f->z_real * f->z_real - f->z_imag * f->z_imag + f->c_real;
 		f->z_imag = 2 * f->z_real * f->z_imag + f->c_imag;
 		f->z_real = x_tmp;
-		if (f->z_real * f->z_real + f->z_imag * f->z_imag > 16)
+		if (ft_abs(f->z_real) + ft_abs(f->z_imag) > 4)
 			break ;
 		i++;
 	}

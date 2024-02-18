@@ -28,6 +28,8 @@ void	zoom_out(t_fractal *f, int x, int y)
 {
 	double	zoom_level;
 
+	if (f->zoom < 10)
+		return ;
 	zoom_level = 1.42;
 	f->offset_x = (x / f->zoom + f->offset_x) - (x
 			/ (f->zoom / zoom_level));
@@ -50,6 +52,5 @@ int	handle_mouse(int mouse_code, int x, int y, t_fractal *f)
 		zoom_out(f, x, y);
 	if (f->fractal == 2 && mouse_code == 1)
 		modify_c_constant(f, x, y);
-	//ft_printf("m; %d x; %d y; %d\n", mouse_code, x , y);
 	return (0);
 }

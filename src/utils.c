@@ -20,16 +20,31 @@ void	img_pixel_put(t_fractal *f, int x, int y, int color)
 	*(int *)pixel = color;
 }
 
-void	clean_exit(t_fractal *f)
+int	clean_exit(t_fractal *f)
 {
 	mlx_destroy_image(f->mlx_ptr, f->mlx_img);
+	mlx_destroy_window(f->mlx_ptr, f->win_ptr);
 	mlx_destroy_display(f->mlx_ptr);
 	free(f->mlx_ptr);
+	exit(0);
 }
 
-int	destroy_display(t_fractal *f)
+int	skip_space_and_sign(char *str)
 {
-	mlx_destroy_window(f->mlx_ptr, f->win_ptr);
-	f->win_ptr = NULL;
-	return (0);
+	int	i;
+
+	i = 0;
+	while (str[i] == ' ' || (str[i] > 8 && str[i] < 14))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	return (i);
+}
+
+double	ft_abs(double value)
+{
+	if (value >= 0)
+		return (value);
+	return (-value);
+
 }
