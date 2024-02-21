@@ -14,6 +14,7 @@
 
 void	init_data_mandelbrot(t_fractal *f)
 {
+	f->fractal = 1;
 	f->x = 0;
 	f->y = 0;
 	f->color = 0xFD0D02;
@@ -25,6 +26,7 @@ void	init_data_mandelbrot(t_fractal *f)
 
 void	init_data_julia(t_fractal *f, double real, double imag)
 {
+	f->fractal = 2;
 	f->x = 0;
 	f->y = 0;
 	f->c_real = real;
@@ -38,6 +40,7 @@ void	init_data_julia(t_fractal *f, double real, double imag)
 
 void	init_data_burning_ship(t_fractal *f)
 {
+	f->fractal = 3;
 	f->x = 0;
 	f->y = 0;
 	f->color = 0xFD0D02;
@@ -49,7 +52,8 @@ void	init_data_burning_ship(t_fractal *f)
 
 int	info(void)
 {
-	ft_putendl_fd("Error\n\nArguments available :\n", 1);
+	ft_putendl_fd("Error", 2);
+	ft_putendl_fd("\nArguments available :\n", 1);
 	ft_putendl_fd("\t./fractol Mandelebrot", 1);
 	ft_putendl_fd("\t./fractol Julia <real> <imaginary>", 1);
 	ft_putendl_fd("\t./fractol Burning_ship\n", 1);
@@ -86,33 +90,25 @@ int	check_value(int argc, char **argv)
 
 int	parsing(t_fractal *f, int argc, char**argv)
 {
-	if (argc > 1)
+	if (argc == 2 && ft_strncmp("Mandelbrot", argv[1], ft_strlen(argv[1])) == 0)
 	{
-		if (ft_strncmp("Mandelbrot", argv[1], ft_strlen(argv[1])) == 0
-			&& argc == 2)
-		{
-			f->fractal = 1;
-			init_data_mandelbrot(f);
-			return (0);
-		}
-		if (ft_strncmp("Burning_ship", argv[1], ft_strlen(argv[1])) == 0
-			&& argc == 2)
-		{
-			f->fractal = 3;
-			init_data_burning_ship(f);
-			return (0);
-		}
-		if (ft_strncmp("Julia", argv[1], ft_strlen(argv[1])) == 0 && (argc > 1))
-		{
-			f->fractal = 2;
-			if (argc == 2)
-				init_data_julia(f, 0.285, 0.01);
-			else if (argc == 4 && !check_value(argc, argv))
-				init_data_julia(f, ft_atof(argv[2]), ft_atof(argv[3]));		
-			else
-				return (1);
-			return (0);
-		}
+		init_data_mandelbrot(f);
+		return (0);
+	}
+	if (argc == 2 && ft_strncmp("Burning_ship", argv[1], ft_strlen(argv[1])) == 0)
+	{
+		init_data_burning_ship(f);
+		return (0);
+	}
+	if ((argc > 1) && ft_strncmp("Julia", argv[1], ft_strlen(argv[1])) == 0)
+	{
+		if (argc == 2)
+			init_data_julia(f, 0.285, 0.01);
+		else if (argc == 4 && !check_value(argc, argv))
+			init_data_julia(f, ft_atof(argv[2]), ft_atof(argv[3]));		
+		else
+			return (1);
+		return (0);
 	}
 	return (1);
 }
