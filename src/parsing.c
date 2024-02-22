@@ -50,14 +50,13 @@ void	init_data_burning_ship(t_fractal *f)
 	f->max_iterations = 42;
 }
 
-int	info(void)
+void	info(void)
 {
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd("\nArguments available :\n", 1);
 	ft_putendl_fd("\t./fractol Mandelebrot", 1);
 	ft_putendl_fd("\t./fractol Julia <real> <imaginary>", 1);
 	ft_putendl_fd("\t./fractol Burning_ship\n", 1);
-	return (0);
 }
 
 int	check_value(int argc, char **argv)

@@ -66,7 +66,7 @@ int		draw_image(t_fractal *f);
 void	calculate_pixel_color(t_fractal *f);
 
 int		parsing(t_fractal *f, int argc, char**argv);
-int		info(void);
+void	info(void);
 void	init_data_mandelbrot(t_fractal *f);
 void	init_data_julia(t_fractal *f, double real, double imag);
 void	init_data_burning_ship(t_fractal *f);

@@ -56,8 +56,10 @@ int	main(int argc, char **argv)
 	t_fractal	fractal;
 
 	if (parsing(&fractal, argc, argv))
-		if (!info())
-			return (1);
+	{
+		info();
+		return (1);
+	}
 	fractal.mlx_ptr = mlx_init();
 	if (!fractal.mlx_ptr)
 		return (1);

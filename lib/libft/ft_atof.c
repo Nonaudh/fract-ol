@@ -1,6 +1,6 @@
 #include "libft.h"
 
-static int	is_neg(const char *str, int *i)
+static int	skip_space_and_sign(const char *str, int *i)
 {
 	int sign;
 
@@ -27,7 +27,7 @@ double ft_atof(const char *str)
 	div = 0.1;
 	sign = 1;
 	nb = 0;
-	sign = is_neg(str, &i);
+	sign = skip_space_and_sign(str, &i);
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		nb = (nb * 10.0) + str[i] - '0';
