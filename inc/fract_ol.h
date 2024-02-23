@@ -75,6 +75,7 @@ void	img_pixel_put(t_fractal *f, int x, int y, int color);
 int		clean_exit(t_fractal *f);
 int		skip_space_and_sign(char *str);
 double	ft_abs(double value);
+int	check_value(int argc, char **argv);
 
 void	calculate_mandelbrot(t_fractal *f);
 void	calculate_julia(t_fractal *f);

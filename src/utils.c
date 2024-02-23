@@ -46,5 +46,32 @@ double	ft_abs(double value)
 	if (value >= 0)
 		return (value);
 	return (-value);
+}
 
+int	check_value(int argc, char **argv)
+{
+	int	i;
+	int	j;
+	int	dot;
+
+	j = 2;
+	dot = 0;
+	while (j < argc)
+	{
+		i = skip_space_and_sign(argv[j]);
+		while (argv[j][i])
+		{
+			if (!ft_isdigit(argv[j][i]))
+			{
+				if (argv[j][i] == '.' && !dot)
+					dot = 1;
+				else
+					return (1);
+			}
+			i++;
+		}
+		dot = 0;
+		j++;
+	}
+	return (0);
 }

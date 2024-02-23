@@ -59,42 +59,16 @@ void	info(void)
 	ft_putendl_fd("\t./fractol Burning_ship\n", 1);
 }
 
-int	check_value(int argc, char **argv)
-{
-	int	i;
-	int	j;
-	int	dot;
-
-	j = 2;
-	dot = 0;
-	while (j < argc)
-	{
-		i = skip_space_and_sign(argv[j]);
-		while (argv[j][i])
-		{
-			if (!ft_isdigit(argv[j][i]))
-			{
-				if (argv[j][i] == '.' && !dot)
-					dot = 1;
-				else
-					return (1);
-			}
-			i++;
-		}
-		dot = 0;
-		j++;
-	}
-	return(0);
-}
-
 int	parsing(t_fractal *f, int argc, char**argv)
 {
-	if (argc == 2 && ft_strncmp("Mandelbrot", argv[1], ft_strlen(argv[1])) == 0)
+	if (argc == 2 && ft_strncmp("Mandelbrot", argv[1],
+			ft_strlen(argv[1])) == 0)
 	{
 		init_data_mandelbrot(f);
 		return (0);
 	}
-	if (argc == 2 && ft_strncmp("Burning_ship", argv[1], ft_strlen(argv[1])) == 0)
+	if (argc == 2 && ft_strncmp("Burning_ship", argv[1],
+			ft_strlen(argv[1])) == 0)
 	{
 		init_data_burning_ship(f);
 		return (0);
@@ -104,7 +78,7 @@ int	parsing(t_fractal *f, int argc, char**argv)
 		if (argc == 2)
 			init_data_julia(f, 0.285, 0.01);
 		else if (argc == 4 && !check_value(argc, argv))
-			init_data_julia(f, ft_atof(argv[2]), ft_atof(argv[3]));		
+			init_data_julia(f, ft_atof(argv[2]), ft_atof(argv[3]));
 		else
 			return (1);
 		return (0);

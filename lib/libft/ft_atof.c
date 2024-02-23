@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahuge <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/23 11:56:32 by ahuge             #+#    #+#             */
+/*   Updated: 2024/02/23 11:56:33 by ahuge            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static int	skip_space_and_sign(const char *str, int *i)
 {
-	int sign;
+	int	sign;
 
 	sign = 1;
 	while (str[*i] == ' ' || (str[*i] > 8 && str[*i] < 14))
@@ -16,7 +28,7 @@ static int	skip_space_and_sign(const char *str, int *i)
 	return (sign);
 }
 
-double ft_atof(const char *str)
+double	ft_atof(const char *str)
 {
 	int			i;
 	double		div;
